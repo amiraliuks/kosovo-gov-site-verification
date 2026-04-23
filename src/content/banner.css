@@ -231,10 +231,14 @@
   }
 }
 
-.ks-close {
+#ks-gov-banner .ks-close {
+  appearance: none;
+  -webkit-appearance: none;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  color: white;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  text-shadow: none;
   width: 30px;
   height: 30px;
   border-radius: 8px;
@@ -246,14 +250,22 @@
   line-height: 1;
   opacity: 0.88;
   margin-right: 0;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: inherit;
 }
 
-.ks-close:hover {
+#ks-gov-banner .ks-close:hover,
+#ks-gov-banner .ks-close:active {
   opacity: 1;
   background: rgba(0, 0, 0, 0.2);
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }
 
-.ks-close:focus-visible {
+#ks-gov-banner .ks-close:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.95);
   outline-offset: 2px;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }

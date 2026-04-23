@@ -127,17 +127,7 @@ async function checkDomain() {
     return;
   }
 
-  const h = host.toLowerCase();
-  const matched = officialDomains.some(d => {
-    if (!d) return false;
-
-    const dd = String(d).toLowerCase().trim();
-
-    if (!dd) return false;
-    if (h === dd) return true;
-
-    return dd.includes(".") && h.endsWith("." + dd);
-  });
+  const matched = KSGovDomain.isOfficialHost(host, officialDomains);
 
   if (matched) {
     setStatusText(t.official, "ok");

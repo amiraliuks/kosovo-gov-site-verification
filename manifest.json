@@ -37,6 +37,7 @@
         "https://*/*"
       ],
       "js": [
+        "src/shared/domain-match.js",
         "src/content/banner.js"
       ],
       "css": [

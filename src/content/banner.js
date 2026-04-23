@@ -23,17 +23,8 @@
     console.error("Error loading domains.json:", err);
   }
 
-  const host = (window.location.hostname || "").toLowerCase();
-
-  function matchesFromList(h, entry) {
-    if (!h || !entry) return false;
-    const d = String(entry).toLowerCase().trim();
-    if (!d) return false;
-    if (h === d) return true;
-    return h.endsWith("." + d);
-  }
-
-  const matched = domains.find(d => matchesFromList(host, d));
+  const host = window.location.hostname || "";
+  const matched = KSGovDomain.findMatchedDomain(host, domains);
   const isOfficial = Boolean(matched);
 
   const navLang = (navigator.language || "").toLowerCase();

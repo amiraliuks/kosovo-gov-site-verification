@@ -1,7 +1,36 @@
 (function (global) {
   function normalizeDomain(value) {
     if (!value) return "";
-    return String(value).toLowerCase().trim().replace(/\.+$/, "");
+
+    const raw = String(value).toLowerCase().trim().replace(/\.+$/, "");
+    if (!raw) return "";
+
+    const hasScheme = /^[a-z][a-z0-9+.-]*:\/\//i.test(raw);
+    const candidate = hasScheme ? raw : `http://${raw}`;
+
+    try {
+      // URL.hostname returns canonical ASCII form, which makes IDN matching
+      // safe and consistent (e.g. unicode domains become punycode).
+      return new URL(candidate).hostname.toLowerCase().replace(/\.+$/, "");
+    } catch {
+      // Fallback for malformed inputs: strip path/query/fragment and port.
+      let host = raw.split(/[/?#]/, 1)[0] || "";
+      host = host.replace(/\.+$/, "");
+
+      if (host.startsWith("[")) {
+        const endBracket = host.indexOf("]");
+        if (endBracket >= 0) {
+          return host.slice(1, endBracket).toLowerCase().replace(/\.+$/, "");
+        }
+      }
+
+      const firstColon = host.indexOf(":");
+      if (firstColon >= 0) {
+        host = host.slice(0, firstColon);
+      }
+
+      return host.toLowerCase().replace(/\.+$/, "");
+    }
   }
 
   function matchesHost(host, domainEntry) {

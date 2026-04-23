@@ -10,20 +10,29 @@
 
 <body>
   <div class="popup-root" role="dialog" aria-label="Kosovo Government Domain Checker">
+    <div class="bg-orb bg-orb-a" aria-hidden="true"></div>
+    <div class="bg-orb bg-orb-b" aria-hidden="true"></div>
+
     <header class="popup-header">
-      <img src="../../assets/kosovo-flag.png" class="flag" alt="Kosovo flag" />
-      <h1 id="title" class="title"></h1>
+      <div class="flag-wrap">
+        <img src="../../assets/kosovo-flag.png" class="flag" alt="Kosovo flag" />
+      </div>
+      <div class="title-wrap">
+        <p class="eyebrow">Republic of Kosovo</p>
+        <h1 id="title" class="title"></h1>
+      </div>
     </header>
 
     <main class="popup-main">
       <div id="domainStatus" class="status-box" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
         <span id="statusText"></span>
       </div>
 
-      <button id="checkBtn" class="btn" type="button" aria-pressed="false"></button>
+      <button id="checkBtn" class="btn" type="button"></button>
 
-      <a id="sourceLink" class="source-link" href="https://github.com/AmirAliuA/kosovo-gov-site-verification"
-        target="_blank" rel="noopener">View Source Code</a>
+      <a id="sourceLink" class="source-link" href="https://github.com/AmirAliuA/kosovo-gov-site-verification" target="_blank"
+        rel="noopener">View Source Code</a>
 
       <p id="disclaimer" class="disclaimer"></p>
     </main>
@@ -31,7 +40,8 @@
     <footer class="popup-footer">
       <label class="auto-check">
         <input id="autocheckToggle" type="checkbox" checked />
-        Auto-check on open
+        <span class="auto-check-track" aria-hidden="true"></span>
+        <span class="auto-check-label">Auto-check on open</span>
       </label>
     </footer>
   </div>

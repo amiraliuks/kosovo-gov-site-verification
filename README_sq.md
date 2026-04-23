@@ -1,8 +1,8 @@
-# 🇽🇰 Kontrolluesi i Domenëve të Qeverisë së Kosovës
+# Kontrolluesi i Domenëve të Qeverisë së Kosovës
 Një extension që tregon nëse faqja që po vizitoni i përket një institucioni zyrtar të Republikës së Kosovës. Një banner i vogël shfaqet në krye të çdo faqeje.
 
-> **Banner blu** → Domen zyrtar i Qeverisë së Kosovës  
-> **Banner i kuq** → Nuk është domen zyrtar
+> Banner blu -> Domen zyrtar i Qeverisë së Kosovës  
+> Banner i kuq -> Nuk është domen zyrtar
 
 Nuk mbledh të dhëna. Nuk dërgon kërkesa në rrjet. Funksionon tërësisht offline.
 
@@ -28,9 +28,9 @@ Detektohen automatikisht nga `navigator.language`. Nëse gjuha nuk njihet, përd
 ---
 
 ## Privatësia
-Funksionon tërësisht offline. Lexon vetëm domenin e faqes aktuale, asgjë nuk mblidhet apo dërgohet jashtë.
+Funksionon tërësisht offline. Lexon vetëm domenin e faqes aktuale; asgjë nuk mblidhet apo dërgohet jashtë.
 
 ---
 
 ## Licenca
-[CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) — Pa përdorim komercial, pa shpërndarje, pa fork.
+[CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) - Pa përdorim komercial, pa shpërndarje, pa fork.

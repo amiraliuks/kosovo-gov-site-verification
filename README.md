@@ -1,8 +1,8 @@
-# 🇽🇰 Kosovo Government Domain Checker
-A browser extension that tells you whether the site you're visiting belongs to an official Kosovo government institution. A small banner appears at the top of every page.
+# Kosovo Government Domain Checker
+A browser extension that tells you whether the site you are visiting belongs to an official Kosovo government institution. A small banner appears at the top of each page.
 
-> **Blue banner** → Official Kosovo government domain  
-> **Red banner** → Not an official domain
+> Blue banner -> Official Kosovo government domain  
+> Red banner -> Not an official domain
 
 No data collected. No network requests. Runs entirely offline.
 
@@ -28,9 +28,9 @@ Detected automatically from `navigator.language`. Falls back to English.
 ---
 
 ## Privacy
-Runs entirely offline. Only reads the domain of the page you're on, nothing is collected or sent anywhere.
+Runs entirely offline. Only reads the domain of the page you are on; nothing is collected or sent anywhere.
 
 ---
 
 ## License
-[CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) — No commercial use, no redistribution, no forks.
+[CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) - No commercial use, no redistribution, no forks.

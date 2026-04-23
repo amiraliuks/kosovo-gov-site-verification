@@ -45,7 +45,6 @@
       sq: "Paralajmërim: Nuk është faqe zyrtare e Qeverisë së Kosovës",
       sr: "Upozorenje: Nije zvanična veb stranica Vlade Kosova"
     },
-
     domainsTitle: {
       en: "Official Kosovo government domains",
       sq: "Domenë zyrtare të Qeverisë së Kosovës",
@@ -56,33 +55,30 @@
       sq: "Faqet që janë në listën tonë të verifikuar i përkasin institucioneve zyrtare të Republikës së Kosovës.",
       sr: "Sajtovi sa naše verifikovane liste pripadaju institucijama Republike Kosovo."
     },
-
     nok_short: {
       en: 'This domain is not included in the <a class="ks-verified-link" href="https://github.com/amiraliuks/kosovo-gov-site-verification/blob/main/src/data/domains.json" target="_blank" rel="noopener noreferrer">verified list</a> of official Kosovo government websites.',
       sq: "Ky domen nuk është pjesë e listës së verifikuar të faqeve qeveritare të Kosovës.",
       sr: "Ovaj domen nije na verifikovanoj listi zvaničnih sajtova Vlade Kosova."
     },
-
     httpsTitle: {
       en: "Secure Kosovo websites use HTTPS",
       sq: "Faqet zyrtare të Kosovës përdorin HTTPS",
       sr: "Bezbedni kosovski sajtovi koriste HTTPS"
     },
     httpsText: {
-      en: "A lock (🔒) or https:// means your connection to the website is encrypted.",
-      sq: "Simboli i drynit (🔒) ose https:// tregon që lidhja është e sigurtë.",
-      sr: "Simbol katanca (🔒) ili https:// znači da je vaša veza šifrovana."
+      en: "A lock icon or https:// means your connection to the website is encrypted.",
+      sq: "Një ikonë dryni ose https:// do të thotë që lidhja juaj me faqen është e enkriptuar.",
+      sr: "Ikona katanca ili https:// znači da je vaša veza sa sajtom šifrovana."
     },
-
     ok: {
-      en: `✔ This domain is verified as an official Kosovo government website${matched ? " (" + matched + ")" : ""}.`,
-      sq: `✔ Ky domen është verifikuar si faqe zyrtare e Qeverisë së Kosovës${matched ? " (" + matched + ")" : ""}.`,
-      sr: `✔ Ovaj domen je potvrđen kao zvanična veb stranica Vlade Kosova${matched ? " (" + matched + ")" : ""}.`
+      en: `Verified: This domain is an official Kosovo government website${matched ? " (" + matched + ")" : ""}.`,
+      sq: `Verifikuar: Ky domen është faqe zyrtare e Qeverisë së Kosovës${matched ? " (" + matched + ")" : ""}.`,
+      sr: `Potvrđeno: Ovaj domen je zvanična veb stranica Vlade Kosova${matched ? " (" + matched + ")" : ""}.`
     },
     nok: {
-      en: "⚠ This domain is NOT in the official Kosovo government list.",
-      sq: "⚠ Ky domen NUK është në listën zyrtare të Qeverisë së Kosovës.",
-      sr: "⚠ Ovaj domen NIJE na zvaničnoj listi Vlade Kosova."
+      en: "Warning: This domain is NOT in the official Kosovo government list.",
+      sq: "Paralajmërim: Ky domen NUK është në listën zyrtare të Qeverisë së Kosovës.",
+      sr: "Upozorenje: Ovaj domen NIJE na zvaničnoj listi Vlade Kosova."
     }
   };
 
@@ -97,7 +93,7 @@
   banner.innerHTML = `
     <div class="ks-header" role="button" tabindex="0" aria-expanded="false" aria-controls="ks-gov-panel">
       <div class="ks-left">
-        <button class="ks-close" type="button" aria-label="Hide banner">×</button>
+        <button class="ks-close" type="button" aria-label="Hide banner">&times;</button>
         <img src="${flagUrl}" class="ks-flag">
         <div class="ks-header-title"></div>
       </div>

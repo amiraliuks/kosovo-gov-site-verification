@@ -3,28 +3,37 @@ const translations = {
     title: "Kosovo Government Domain Checker",
     button: "Check Current Website",
     checking: "Checking...",
-    official: "✅ This is an official Kosovo government domain.",
-    unofficial: "❌ This is NOT an official Kosovo government domain.",
+    official: "Verified: This is an official Kosovo government domain.",
+    unofficial: "Warning: This is NOT an official Kosovo government domain.",
+    unsupported: "This page cannot be verified (internal browser page or unsupported protocol).",
+    unavailable: "Could not read the active tab. Try reloading the page.",
     source: "View Source Code",
-    disclaimer: "This extension is a personal project and is not affiliated with the Government of Kosovo or any of its institutions."
+    disclaimer:
+      "This extension is a personal project and is not affiliated with the Government of Kosovo or any of its institutions."
   },
   sq: {
-    title: "Kontrolluesi i Domenve të Qeverisë së Kosovës",
+    title: "Kontrolluesi i Domenëve të Qeverisë së Kosovës",
     button: "Kontrollo Faqen Aktuale",
     checking: "Duke kontrolluar...",
-    official: "✅ Ky është një domen zyrtar i institucioneve të Kosovës.",
-    unofficial: "❌ Ky NUK është domen zyrtar i institucioneve të Kosovës.",
+    official: "Verifikuar: Ky është një domen zyrtar i institucioneve të Kosovës.",
+    unofficial: "Paralajmërim: Ky NUK është domen zyrtar i institucioneve të Kosovës.",
+    unsupported: "Kjo faqe nuk mund të verifikohet (faqe e brendshme e shfletuesit ose protokoll i pambështetur).",
+    unavailable: "Nuk mund të lexohet faqja aktive. Provo ta rifreskosh faqen.",
     source: "Shiko kodin burimor",
-    disclaimer: "Ky extension është projekt personal dhe nuk është i lidhur me Qeverinë e Kosovës ose ndonjë institucion të saj."
+    disclaimer:
+      "Ky extension është projekt personal dhe nuk është i lidhur me Qeverinë e Kosovës ose ndonjë institucion të saj."
   },
   sr: {
-    title: "Provera Domenа Vlade Kosova",
+    title: "Provera Domena Vlade Kosova",
     button: "Proveri Trenutni Sajt",
     checking: "Proveravanje...",
-    official: "✅ Ovo je zvaničan domen institucija Kosova.",
-    unofficial: "❌ Ovo NIJE zvaničan domen institucija Kosova.",
+    official: "Potvrđeno: Ovo je zvaničan domen institucija Kosova.",
+    unofficial: "Upozorenje: Ovo NIJE zvaničan domen institucija Kosova.",
+    unsupported: "Ova stranica ne može da se proveri (interna stranica pregledača ili nepodržan protokol).",
+    unavailable: "Aktivna kartica nije dostupna. Pokušajte ponovo.",
     source: "Pogledaj izvorni kod",
-    disclaimer: "Ovo proširenje je lični projekat i nije povezano sa Vladom Kosova ili bilo kojom njenom institucijom."
+    disclaimer:
+      "Ovo proširenje je lični projekat i nije povezano sa Vladom Kosova ili bilo kojom njenom institucijom."
   }
 };
 
@@ -37,16 +46,6 @@ function getLang() {
 
 const lang = getLang();
 const t = translations[lang];
-const unsupportedTextByLang = {
-  en: "This page cannot be verified (internal browser page or unsupported protocol).",
-  sq: "Kjo faqe nuk mund te verifikohet (faqe e brendshme e shfletuesit ose protokoll i pambeshtetur).",
-  sr: "Ova stranica ne moze da se proveri (interna stranica pregledaca ili nepodrzan protokol)."
-};
-const unavailableTextByLang = {
-  en: "Could not read the active tab. Try reloading the page.",
-  sq: "Nuk mund te lexohet faqja aktive. Provo ta rifreskosh faqen.",
-  sr: "Aktivna kartica nije dostupna. Pokusajte ponovo."
-};
 
 const titleEl = document.getElementById("title");
 const statusTextEl = document.getElementById("statusText");
@@ -59,7 +58,10 @@ const AUTO_CHECK_KEY = "autoCheckOnOpen";
 
 if (titleEl) titleEl.textContent = t.title;
 if (checkBtn) checkBtn.textContent = t.button;
-if (sourceLink) { sourceLink.textContent = t.source; sourceLink.href = "https://github.com/AmirAliuA/kosovo-gov-site-verification"; }
+if (sourceLink) {
+  sourceLink.textContent = t.source;
+  sourceLink.href = "https://github.com/AmirAliuA/kosovo-gov-site-verification";
+}
 if (disclaimerEl) disclaimerEl.textContent = t.disclaimer;
 
 let officialDomains = [];
@@ -138,18 +140,17 @@ async function checkDomain() {
 
   const current = await getCurrentHost();
   if (current.status === "unsupported") {
-    setStatusText(unsupportedTextByLang[lang], "info");
+    setStatusText(t.unsupported, "info");
     return;
   }
 
   const host = current.host;
   if (!host) {
-    setStatusText(unavailableTextByLang[lang], "info");
+    setStatusText(t.unavailable, "info");
     return;
   }
 
   const matched = KSGovDomain.isOfficialHost(host, officialDomains);
-
   if (matched) {
     setStatusText(t.official, "ok");
   } else {
@@ -174,7 +175,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   if (autoCheckToggle && shouldAutoCheck) {
-    // small delay so UI paints nicely
     setTimeout(() => checkDomain(), 160);
   }
 });

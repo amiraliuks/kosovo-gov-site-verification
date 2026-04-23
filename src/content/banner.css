@@ -1,12 +1,11 @@
 #ks-gov-banner {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 2147483647;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color: #fff;
   pointer-events: auto;
+  width: 100%;
 }
 
 .ks-header {
@@ -88,10 +87,7 @@
 }
 
 .ks-panel {
-  position: fixed;
-  top: 48px;
-  left: 0;
-  right: 0;
+  position: relative;
   background: #f7fafc;
   color: #0f1720;
   box-shadow: 0 4px 14px rgba(2, 6, 23, 0.08);
@@ -167,7 +163,6 @@
 
 @media (max-width:640px) {
   .ks-panel {
-    top: 48px;
     padding: 12px 8px;
   }
 

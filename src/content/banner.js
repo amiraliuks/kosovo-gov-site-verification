@@ -138,11 +138,7 @@
     </div>
   `;
 
-  try {
-    document.documentElement.prepend(banner);
-  } catch {
-    document.body.insertBefore(banner, document.body.firstChild);
-  }
+  document.body.prepend(banner);
 
   banner.querySelectorAll("img").forEach(img => {
     img.addEventListener("error", () => (img.style.display = "none"));

@@ -6,6 +6,12 @@
   "author": "Amir Aliu",
   "homepage_url": "https://github.com/AmirAliuA/kosovo-gov-site-verification",
   "offline_enabled": true,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "kosovo-gov-site-verification@amiraliu.dev",
+      "strict_min_version": "121.0"
+    }
+  },
   "icons": {
     "16": "assets/icons/icon16.png",
     "32": "assets/icons/icon32.png",

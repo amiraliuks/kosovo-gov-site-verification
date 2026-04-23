@@ -104,16 +104,16 @@
   banner.className = "ks-collapsed";
 
   banner.innerHTML = `
-    <div class="ks-header" role="button" aria-expanded="false">
+    <div class="ks-header" role="button" tabindex="0" aria-expanded="false" aria-controls="ks-gov-panel">
       <div class="ks-left">
-        <button class="ks-close" aria-label="Hide banner">×</button>
+        <button class="ks-close" type="button" aria-label="Hide banner">×</button>
         <img src="${flagUrl}" class="ks-flag">
         <div class="ks-header-title"></div>
       </div>
-      <button class="ks-toggle" aria-label="Toggle Kosovo info"></button>
+      <span class="ks-toggle" aria-hidden="true"></span>
     </div>
 
-    <div class="ks-panel" aria-hidden="true">
+    <div id="ks-gov-panel" class="ks-panel" aria-hidden="true">
       <div class="ks-row">
         <img src="${emblemUrl}" class="ks-icon">
         <div class="ks-col">
@@ -174,6 +174,7 @@
   });
 
   header.addEventListener("keydown", e => {
+    if (e.target !== header) return;
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       setExpanded(header.getAttribute("aria-expanded") !== "true");

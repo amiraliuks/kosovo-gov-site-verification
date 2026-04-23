@@ -8,6 +8,15 @@ No data collected. No network requests. Runs entirely offline.
 
 ---
 
+## Screenshots
+### Official domain
+![Official domain banner](screenshots/official-domain.png)
+
+### Unofficial domain
+![Unofficial domain banner](screenshots/unofficial-domain.png)
+
+---
+
 ## Install (Developer Mode)
 1. Download or clone the repo
 2. Go to `chrome://extensions/`

@@ -8,6 +8,15 @@ Nuk mbledh të dhëna. Nuk dërgon kërkesa në rrjet. Funksionon tërësisht of
 
 ---
 
+## Screenshots
+### Official domain
+![Official domain banner](screenshots/official-domain.png)
+
+### Unofficial domain
+![Unofficial domain banner](screenshots/unofficial-domain.png)
+
+---
+
 ## Instalimi (Developer Mode)
 1. Shkarko ose klono projektin
 2. Hape `chrome://extensions/`

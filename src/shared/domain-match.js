@@ -1,8 +1,17 @@
 (function (global) {
-  function normalizeDomain(value) {
-    if (!value) return "";
+  function extractDomain(value) {
+    if (typeof value === "string") return value;
+    if (value && typeof value === "object" && typeof value.domain === "string") {
+      return value.domain;
+    }
+    return "";
+  }
 
-    const raw = String(value).toLowerCase().trim().replace(/\.+$/, "");
+  function normalizeDomain(value) {
+    const extracted = extractDomain(value);
+    if (!extracted) return "";
+
+    const raw = String(extracted).toLowerCase().trim().replace(/\.+$/, "");
     if (!raw) return "";
 
     const hasScheme = /^[a-z][a-z0-9+.-]*:\/\//i.test(raw);
@@ -35,7 +44,7 @@
 
   function matchesHost(host, domainEntry) {
     const h = normalizeDomain(host);
-    const d = normalizeDomain(domainEntry);
+    const d = normalizeDomain(extractDomain(domainEntry));
     if (!h || !d) return false;
     if (h === d) return true;
     return h.endsWith("." + d);
@@ -46,7 +55,7 @@
 
     for (const domainEntry of domainList) {
       if (matchesHost(host, domainEntry)) {
-        return normalizeDomain(domainEntry);
+        return normalizeDomain(extractDomain(domainEntry));
       }
     }
 
@@ -58,6 +67,7 @@
   }
 
   global.KSGovDomain = {
+    extractDomain,
     normalizeDomain,
     matchesHost,
     findMatchedDomain,

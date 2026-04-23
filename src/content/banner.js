@@ -147,6 +147,7 @@
   }
 
   const panel = banner.querySelector(".ks-panel");
+  let closedByUser = false;
 
   function setExpanded(expanded) {
     header.setAttribute("aria-expanded", String(expanded));
@@ -154,7 +155,13 @@
     banner.classList.toggle("ks-collapsed", !expanded);
   }
 
+  function syncFullscreenVisibility() {
+    if (closedByUser) return;
+    banner.classList.toggle("ks-hidden-fullscreen", Boolean(document.fullscreenElement));
+  }
+
   setExpanded(false);
+  syncFullscreenVisibility();
 
   header.addEventListener("click", () => {
     setExpanded(header.getAttribute("aria-expanded") !== "true");
@@ -170,8 +177,12 @@
 
   banner.querySelector(".ks-close").addEventListener("click", e => {
     e.stopPropagation();
+    closedByUser = true;
+    banner.classList.remove("ks-hidden-fullscreen");
     banner.style.transition = "opacity .25s ease";
     banner.style.opacity = "0";
     setTimeout(() => (banner.style.display = "none"), 250);
   });
+
+  document.addEventListener("fullscreenchange", syncFullscreenVisibility);
 })();

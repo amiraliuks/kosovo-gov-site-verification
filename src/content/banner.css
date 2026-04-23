@@ -1,11 +1,20 @@
 #ks-gov-banner {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2147483647;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  width: min(580px, calc(100vw - 16px));
+  font-family: "Segoe UI Variable", "Trebuchet MS", "Segoe UI", sans-serif;
   color: #fff;
-  pointer-events: auto;
-  width: 100%;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+#ks-gov-banner.ks-hidden-fullscreen {
+  opacity: 0;
+  transform: translate(-50%, -14px);
+  pointer-events: none;
 }
 
 .ks-header {
@@ -13,57 +22,70 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: linear-gradient(180deg, #073a6a, #003366);
-  padding: 8px 14px;
-  min-height: 48px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  min-height: 44px;
+  padding: 6px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
   cursor: pointer;
   user-select: none;
-  transition: filter .18s ease;
+  pointer-events: auto;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
 }
 
 .ks-header:hover {
-  filter: brightness(1.06);
+  filter: brightness(1.04);
+  transform: translateY(-1px);
 }
 
 .ks-header:active {
-  filter: brightness(0.98);
+  transform: translateY(0);
+  filter: brightness(0.99);
 }
 
 .ks-header:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.92);
-  outline-offset: -2px;
+  outline: 2px solid rgba(255, 255, 255, 0.95);
+  outline-offset: 1px;
 }
 
 .ks-left {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .ks-flag {
-  width: 26px;
+  width: 22px;
   height: auto;
   display: block;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .ks-header-title {
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 650;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: .1px;
 }
 
 .ks-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 32px;
-  background: rgba(0, 0, 0, 0.18);
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
   pointer-events: none;
-  transition: transform .18s ease, background .18s ease;
+  transition: background .18s ease;
 }
 
 .ks-toggle::after {
@@ -74,7 +96,6 @@
   border-bottom: 2px solid white;
   transform: rotate(45deg);
   display: block;
-  margin: 0 auto;
   transition: transform .18s ease;
 }
 
@@ -83,21 +104,26 @@
 }
 
 #ks-gov-banner:not(.ks-collapsed) .ks-toggle {
-  background: rgba(0, 0, 0, 0.28);
+  background: rgba(0, 0, 0, 0.32);
 }
 
 .ks-panel {
-  position: relative;
-  background: #f7fafc;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #f8fbff;
   color: #0f1720;
-  box-shadow: 0 4px 14px rgba(2, 6, 23, 0.08);
+  border-radius: 14px;
+  border: 1px solid rgba(8, 47, 101, 0.16);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.35);
   padding: 14px 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  max-height: 60vh;
+  max-height: min(60vh, 440px);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
   transition: max-height .24s ease, opacity .2s ease, transform .2s ease, padding .24s ease, border-color .24s ease;
   will-change: max-height, opacity, transform;
 }
@@ -106,12 +132,12 @@
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  margin-bottom: 14px;
-  padding: 0 10px;
+  margin-bottom: 12px;
+  padding: 0 8px;
 }
 
 .ks-icon {
-  width: 28px;
+  width: 24px;
   height: auto;
   flex-shrink: 0;
 }
@@ -126,16 +152,16 @@
 }
 
 .ks-row-text {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.35;
   color: #374151;
 }
 
 .ks-status {
-  padding: 12px;
-  margin: 0 10px 6px 10px;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 10px 11px;
+  margin: 0 8px 6px 8px;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
 .ks-ok {
@@ -158,42 +184,64 @@
   pointer-events: none;
   padding-top: 0;
   padding-bottom: 0;
-  border-bottom-color: transparent;
+  border-color: transparent;
 }
 
-@media (max-width:640px) {
+@media (max-width: 640px) {
+  #ks-gov-banner {
+    top: 6px;
+    width: calc(100vw - 10px);
+  }
+
+  .ks-header {
+    min-height: 40px;
+    padding: 5px 8px;
+    border-radius: 12px;
+  }
+
+  .ks-header-title {
+    font-size: 13px;
+  }
+
+  .ks-flag {
+    width: 18px;
+  }
+
   .ks-panel {
-    padding: 12px 8px;
+    border-radius: 12px;
+    padding: 11px 8px;
   }
 
   .ks-row {
     gap: 8px;
-    margin-bottom: 12px;
-  }
-
-  .ks-row-text {
-    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 0 4px;
   }
 }
 
 .ks-close {
   background: transparent;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   color: white;
-  font-size: 18px;
-  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   line-height: 1;
-  opacity: 0.75;
+  opacity: 0.88;
+  margin-right: 0;
 }
 
 .ks-close:hover {
   opacity: 1;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .ks-close:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.92);
+  outline: 2px solid rgba(255, 255, 255, 0.95);
   outline-offset: 2px;
-  border-radius: 3px;
 }

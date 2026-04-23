@@ -1,4 +1,3 @@
-// popup.js - fixed, robust, auto-check + translations + animations
 const translations = {
   en: {
     title: "Kosovo Government Domain Checker",

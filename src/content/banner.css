@@ -157,6 +157,18 @@
   color: #374151;
 }
 
+.ks-row-text .ks-verified-link {
+  color: #0b4fb3;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+
+.ks-row-text .ks-verified-link:hover {
+  color: #073a83;
+}
+
 .ks-status {
   padding: 10px 11px;
   margin: 0 8px 6px 8px;

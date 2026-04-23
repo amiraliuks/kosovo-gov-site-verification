@@ -58,7 +58,7 @@
     },
 
     nok_short: {
-      en: "This domain is not included in the verified list of official Kosovo government websites.",
+      en: 'This domain is not included in the <a class="ks-verified-link" href="https://github.com/amiraliuks/kosovo-gov-site-verification/blob/main/src/data/domains.json" target="_blank" rel="noopener noreferrer">verified list</a> of official Kosovo government websites.',
       sq: "Ky domen nuk është pjesë e listës së verifikuar të faqeve qeveritare të Kosovës.",
       sr: "Ovaj domen nije na verifikovanoj listi zvaničnih sajtova Vlade Kosova."
     },

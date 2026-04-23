@@ -160,14 +160,14 @@
   }
 
   const panel = banner.querySelector(".ks-panel");
-  panel.style.display = "none";
-  header.setAttribute("aria-expanded", "false");
 
   function setExpanded(expanded) {
-    panel.style.display = expanded ? "block" : "none";
     header.setAttribute("aria-expanded", String(expanded));
+    panel.setAttribute("aria-hidden", String(!expanded));
     banner.classList.toggle("ks-collapsed", !expanded);
   }
+
+  setExpanded(false);
 
   header.addEventListener("click", () => {
     setExpanded(header.getAttribute("aria-expanded") !== "true");

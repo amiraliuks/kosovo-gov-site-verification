@@ -9,6 +9,8 @@
   --success-text: #0f6b3a;
   --danger-bg: #fff0f0;
   --danger-text: #8a1f1f;
+  --info-bg: #eef3ff;
+  --info-text: #1c3d8f;
 }
 
 /* Dark mode  */
@@ -20,6 +22,8 @@
     --box: #222426;
     --btn-bg: #2b2b2b;
     --accent: #6ea0ff;
+    --info-bg: #1a2438;
+    --info-text: #c7d8ff;
   }
 
   .status-box {
@@ -156,6 +160,12 @@ body {
   background: var(--danger-bg);
   color: var(--danger-text);
   border-left: 4px solid #c43030;
+}
+
+.ks-info {
+  background: var(--info-bg);
+  color: var(--info-text);
+  border-left: 4px solid #3b82f6;
 }
 
 @keyframes popupFade {

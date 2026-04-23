@@ -38,6 +38,16 @@ function getLang() {
 
 const lang = getLang();
 const t = translations[lang];
+const unsupportedTextByLang = {
+  en: "This page cannot be verified (internal browser page or unsupported protocol).",
+  sq: "Kjo faqe nuk mund te verifikohet (faqe e brendshme e shfletuesit ose protokoll i pambeshtetur).",
+  sr: "Ova stranica ne moze da se proveri (interna stranica pregledaca ili nepodrzan protokol)."
+};
+const unavailableTextByLang = {
+  en: "Could not read the active tab. Try reloading the page.",
+  sq: "Nuk mund te lexohet faqja aktive. Provo ta rifreskosh faqen.",
+  sr: "Aktivna kartica nije dostupna. Pokusajte ponovo."
+};
 
 const titleEl = document.getElementById("title");
 const statusTextEl = document.getElementById("statusText");
@@ -95,9 +105,10 @@ function setStatusText(text, kind = null) {
   statusTextEl.classList.add("fade");
 
   if (statusBox) {
-    statusBox.classList.remove("ks-ok", "ks-bad");
+    statusBox.classList.remove("ks-ok", "ks-bad", "ks-info");
     if (kind === "ok") statusBox.classList.add("ks-ok");
     if (kind === "bad") statusBox.classList.add("ks-bad");
+    if (kind === "info") statusBox.classList.add("ks-info");
   }
 }
 
@@ -105,11 +116,16 @@ function getCurrentHost() {
   return new Promise(resolve => {
     try {
       chrome.runtime.sendMessage({ action: "getCurrentHost" }, response => {
-        if (!response) return resolve(null);
-        resolve(response.host || null);
+        if (!response) {
+          return resolve({ host: null, status: "unavailable" });
+        }
+        resolve({
+          host: response.host || null,
+          status: response.status || (response.host ? "ok" : "unavailable")
+        });
       });
     } catch (e) {
-      resolve(null);
+      resolve({ host: null, status: "unavailable" });
     }
   });
 }
@@ -121,9 +137,15 @@ async function checkDomain() {
     await loadDomains();
   }
 
-  const host = await getCurrentHost();
+  const current = await getCurrentHost();
+  if (current.status === "unsupported") {
+    setStatusText(unsupportedTextByLang[lang], "info");
+    return;
+  }
+
+  const host = current.host;
   if (!host) {
-    setStatusText(t.unofficial, "bad");
+    setStatusText(unavailableTextByLang[lang], "info");
     return;
   }
 

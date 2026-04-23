@@ -46,6 +46,7 @@ const sourceLink = document.getElementById("sourceLink");
 const disclaimerEl = document.getElementById("disclaimer");
 const autoCheckToggle = document.getElementById("autocheckToggle");
 const statusBox = document.getElementById("domainStatus");
+const AUTO_CHECK_KEY = "autoCheckOnOpen";
 
 if (titleEl) titleEl.textContent = t.title;
 if (checkBtn) checkBtn.textContent = t.button;
@@ -62,6 +63,27 @@ async function loadDomains() {
     console.error("Failed to load domains.json", err);
     officialDomains = [];
   }
+}
+
+function getAutoCheckEnabled() {
+  return new Promise(resolve => {
+    if (!chrome.storage?.sync) return resolve(true);
+
+    chrome.storage.sync.get({ [AUTO_CHECK_KEY]: true }, items => {
+      if (chrome.runtime.lastError) return resolve(true);
+      resolve(Boolean(items[AUTO_CHECK_KEY]));
+    });
+  });
+}
+
+function setAutoCheckEnabled(enabled) {
+  return new Promise(resolve => {
+    if (!chrome.storage?.sync) return resolve();
+
+    chrome.storage.sync.set({ [AUTO_CHECK_KEY]: Boolean(enabled) }, () => {
+      resolve();
+    });
+  });
 }
 
 function setStatusText(text, kind = null) {
@@ -125,11 +147,22 @@ async function checkDomain() {
 }
 
 if (checkBtn) checkBtn.addEventListener("click", checkDomain);
+if (autoCheckToggle) {
+  autoCheckToggle.addEventListener("change", () => {
+    void setAutoCheckEnabled(autoCheckToggle.checked);
+  });
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadDomains();
 
-  if (autoCheckToggle && autoCheckToggle.checked) {
+  let shouldAutoCheck = false;
+  if (autoCheckToggle) {
+    shouldAutoCheck = await getAutoCheckEnabled();
+    autoCheckToggle.checked = shouldAutoCheck;
+  }
+
+  if (autoCheckToggle && shouldAutoCheck) {
     // small delay so UI paints nicely
     setTimeout(() => checkDomain(), 160);
   }

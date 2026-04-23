@@ -28,7 +28,7 @@ Detektohen automatikisht nga `navigator.language`. Nëse gjuha nuk njihet, përd
 ---
 
 ## Privatësia
-Funksionon tërësisht offline. Lexon vetëm domenin e faqes aktuale — asgjë nuk mblidhet apo dërgohet jashtë.
+Funksionon tërësisht offline. Lexon vetëm domenin e faqes aktuale, asgjë nuk mblidhet apo dërgohet jashtë.
 
 ---
 

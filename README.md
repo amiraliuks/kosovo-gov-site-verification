@@ -28,7 +28,7 @@ Detected automatically from `navigator.language`. Falls back to English.
 ---
 
 ## Privacy
-Runs entirely offline. Only reads the domain of the page you're on — nothing is collected or sent anywhere.
+Runs entirely offline. Only reads the domain of the page you're on, nothing is collected or sent anywhere.
 
 ---
 
